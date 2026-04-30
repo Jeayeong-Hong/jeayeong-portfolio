@@ -55,9 +55,19 @@
     @apply border-border;
   }
 
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-display);
+    -ms-overflow-style: none;
   }
 
   h1, h2, h3, h4, h5, h6 {

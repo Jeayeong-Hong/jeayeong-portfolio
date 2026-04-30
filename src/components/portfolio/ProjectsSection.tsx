@@ -4,15 +4,6 @@ import { ExternalLink, Github, X } from "lucide-react";
 
 const projects = [
   {
-    title: "moum-zip",
-    description: "모임 탐색과 스페이스 관리를 위한 웹 서비스",
-    longDescription:
-      "Next.js와 React 기반의 모임 서비스입니다. 공통 UI 컴포넌트, 마이페이지, 스페이스, 게시판 화면을 중심으로 반응형 인터페이스를 구현했습니다.",
-    tech: ["Next.js", "React", "TanStack Query", "Tailwind CSS"],
-    role: "프론트엔드",
-    period: "2026.04",
-  },
-  {
     title: "BAT",
     description: "OCR 기반 빈칸 학습과 복습을 제공하는 모바일 앱",
     longDescription:
@@ -22,13 +13,13 @@ const projects = [
     period: "2026.04",
   },
   {
-    title: "Portfolio Website",
-    description: "미니멀 다크 테마 개발자 포트폴리오",
+    title: "moum-zip",
+    description: "모임 탐색과 스페이스 관리를 위한 웹 서비스",
     longDescription:
-      "현재 보고 계신 이 사이트입니다. 디자인 시스템 설계부터 Framer Motion 애니메이션, 반응형 레이아웃까지 직접 구현했습니다.",
-    tech: ["React", "Framer Motion", "Tailwind CSS"],
-    role: "디자인 & 개발",
-    period: "2025.05",
+      "Next.js와 React 기반의 모임 서비스입니다. 공통 UI 컴포넌트, 마이페이지, 스페이스, 게시판 화면을 중심으로 반응형 인터페이스를 구현했습니다.",
+    tech: ["Next.js", "React", "TanStack Query", "Tailwind CSS"],
+    role: "프론트엔드",
+    period: "2026.04",
   },
 ];
 
@@ -54,7 +45,7 @@ const ProjectsSection = () => {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-2">
             {projects.map((project, idx) => (
               <motion.div
                 key={project.title}
