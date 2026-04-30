@@ -3,30 +3,27 @@ import { useRef } from "react";
 
 const skillCategories = [
   {
-    title: "Core",
+    title: "Frontend",
     skills: [
-      { name: "React", level: 90 },
-      { name: "TypeScript", level: 85 },
-      { name: "Next.js", level: 80 },
-      { name: "JavaScript", level: 90 },
+      { name: "React / TypeScript", description: "컴포넌트 기반 UI 구성과 API 응답 타입 관리" },
+      { name: "Expo React Native", description: "모바일 화면 구성과 이미지 업로드 흐름 구현" },
+      { name: "Tailwind CSS", description: "반응형 레이아웃과 일관된 UI 스타일링" },
     ],
   },
   {
-    title: "Styling",
+    title: "Backend & Data",
     skills: [
-      { name: "Tailwind CSS", level: 90 },
-      { name: "CSS/SCSS", level: 85 },
-      { name: "Framer Motion", level: 70 },
-      { name: "Styled Components", level: 75 },
+      { name: "FastAPI", description: "OCR/GPT 처리 API 흐름 설계 및 연동" },
+      { name: "Supabase / PostgreSQL", description: "사용자 학습 결과 저장 구조 구성" },
+      { name: "REST API", description: "프론트와 백엔드 간 요청/응답 흐름 정리" },
     ],
   },
   {
-    title: "Tools & Others",
+    title: "AI & Tools",
     skills: [
-      { name: "Git / GitHub", level: 85 },
-      { name: "Figma", level: 65 },
-      { name: "Vercel", level: 80 },
-      { name: "REST API", level: 80 },
+      { name: "OpenAI API", description: "OCR 텍스트 기반 빈칸 문제 생성 흐름 구현" },
+      { name: "Kakao / Apple OAuth", description: "모바일 인증 환경과 redirect 흐름 검토" },
+      { name: "Git / GitHub", description: "기능 단위 변경 관리와 원격 저장소 협업" },
     ],
   },
 ];
@@ -61,19 +58,11 @@ const SkillsSection = () => {
               <h3 className="font-mono text-sm text-primary mb-6 font-medium">{`// ${category.title}`}</h3>
               <div className="space-y-4">
                 {category.skills.map((skill) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between text-sm mb-1.5">
-                      <span className="text-foreground">{skill.name}</span>
-                      <span className="text-muted-foreground font-mono text-xs">{skill.level}%</span>
-                    </div>
-                    <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-primary rounded-full"
-                        initial={{ width: 0 }}
-                        animate={inView ? { width: `${skill.level}%` } : {}}
-                        transition={{ duration: 0.8, delay: catIdx * 0.15 + 0.3 }}
-                      />
-                    </div>
+                  <div key={skill.name} className="space-y-1.5">
+                    <p className="text-sm font-medium text-foreground">{skill.name}</p>
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      {skill.description}
+                    </p>
                   </div>
                 ))}
               </div>
