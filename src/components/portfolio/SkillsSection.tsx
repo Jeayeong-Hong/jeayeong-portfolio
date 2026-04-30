@@ -3,27 +3,51 @@ import { useRef } from "react";
 
 const skillCategories = [
   {
-    title: "Frontend",
+    title: "Core Frontend",
     skills: [
-      { name: "React / TypeScript", description: "컴포넌트 기반 UI 구성과 API 응답 타입 관리" },
-      { name: "Expo React Native", description: "모바일 화면 구성과 이미지 업로드 흐름 구현" },
-      { name: "Tailwind CSS", description: "반응형 레이아웃과 일관된 UI 스타일링" },
+      {
+        name: "React / TypeScript",
+        description: "컴포넌트 기반 UI 구성과 API 응답 타입 관리",
+      },
+      {
+        name: "Next.js",
+        description: "moum-zip 웹 화면 구조와 라우팅 흐름 구현",
+      },
+      {
+        name: "TanStack Query",
+        description: "서버 데이터 조회 상태와 갱신 흐름 관리",
+      },
     ],
   },
   {
-    title: "Backend & Data",
+    title: "Mobile UI",
     skills: [
-      { name: "FastAPI", description: "OCR/GPT 처리 API 흐름 설계 및 연동" },
-      { name: "Supabase / PostgreSQL", description: "사용자 학습 결과 저장 구조 구성" },
-      { name: "REST API", description: "프론트와 백엔드 간 요청/응답 흐름 정리" },
+      {
+        name: "Expo React Native",
+        description: "BAT 모바일 화면과 학습 플로우 구현",
+      },
+      {
+        name: "React Navigation",
+        description: "홈, 학습, 복습, 마이페이지 화면 전환 구성",
+      },
+      {
+        name: "Expo Camera / Image Picker",
+        description: "카메라, 이미지, 문서 입력 화면 구현",
+      },
     ],
   },
   {
-    title: "AI & Tools",
+    title: "Styling & Tools",
     skills: [
-      { name: "OpenAI API", description: "OCR 텍스트 기반 빈칸 문제 생성 흐름 구현" },
-      { name: "Kakao / Apple OAuth", description: "모바일 인증 환경과 redirect 흐름 검토" },
-      { name: "Git / GitHub", description: "기능 단위 변경 관리와 원격 저장소 협업" },
+      {
+        name: "Tailwind CSS",
+        description: "반응형 레이아웃과 일관된 UI 스타일링",
+      },
+      {
+        name: "shadcn / Radix UI",
+        description: "moum-zip 공통 UI 컴포넌트 구성",
+      },
+      { name: "Storybook", description: "공통 컴포넌트 상태 확인과 UI 문서화" },
     ],
   },
 ];
@@ -40,7 +64,9 @@ const SkillsSection = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          <p className="font-mono text-xs text-primary mb-3 tracking-widest uppercase">Skills</p>
+          <p className="font-mono text-xs text-primary mb-3 tracking-widest uppercase">
+            Skills
+          </p>
           <h2 className="text-3xl md:text-4xl font-bold font-display mb-12 text-foreground">
             기술 스택
           </h2>
@@ -59,7 +85,9 @@ const SkillsSection = () => {
               <div className="space-y-4">
                 {category.skills.map((skill) => (
                   <div key={skill.name} className="space-y-1.5">
-                    <p className="text-sm font-medium text-foreground">{skill.name}</p>
+                    <p className="text-sm font-medium text-foreground">
+                      {skill.name}
+                    </p>
                     <p className="text-xs leading-relaxed text-muted-foreground">
                       {skill.description}
                     </p>

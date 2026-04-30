@@ -34,7 +34,7 @@ const AboutSection = () => {
           <div className="mt-10 grid grid-cols-3 gap-6">
             {[
               { label: "프로젝트", value: "6+" },
-              { label: "기술 스택", value: "10+" },
+              { label: "프론트 스택", value: "9+" },
               { label: "커밋 수", value: "500+" },
             ].map((stat) => (
               <div key={stat.label} className="text-center p-4 rounded-lg bg-card border-subtle">
