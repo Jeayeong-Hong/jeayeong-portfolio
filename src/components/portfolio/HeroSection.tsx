@@ -60,12 +60,14 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-bold font-display tracking-tight mb-6"
+          className="text-4xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight mb-6 leading-tight"
         >
-          <span className="text-foreground">구조를 설계하는</span>
+          <span className="text-foreground">사용자는 쉽게</span>
           <br />
-          <span className="text-gradient">개발자</span>
-          <span className="text-foreground">입니다.</span>
+          <span className="text-gradient">구조는 단단하게</span>
+          <span className="text-foreground"> 설계하는</span>
+          <br />
+          <span className="text-foreground">프론트엔드 개발자입니다.</span>
         </motion.h1>
 
         <motion.div
@@ -116,20 +118,21 @@ const HeroSection = () => {
           </a>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <ArrowDown className="text-muted-foreground" size={20} />
-          </motion.div>
-        </motion.div>
       </div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.6 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <ArrowDown className="text-muted-foreground" size={20} />
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

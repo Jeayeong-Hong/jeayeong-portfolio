@@ -4,28 +4,22 @@ import { ExternalLink, Github, X } from "lucide-react";
 
 const projects = [
   {
-    title: "E-Commerce Dashboard",
-    description: "매출 데이터 시각화 및 상품 관리 대시보드",
-    longDescription: "React와 Recharts를 활용한 실시간 매출 대시보드입니다. 상품 CRUD, 필터링, 정렬 기능과 반응형 레이아웃을 구현했습니다.",
-    tech: ["React", "TypeScript", "Tailwind", "Recharts"],
-    role: "프론트엔드 전체",
-    period: "2025.01 - 2025.02",
+    title: "BAT",
+    description: "OCR 기반 빈칸 학습과 복습을 제공하는 모바일 앱",
+    longDescription:
+      "Expo React Native 기반 학습 앱입니다. 이미지와 문서 입력, OCR 결과 확인, 학습/복습 화면, 소셜 로그인 화면 등 사용자 플로우 중심의 모바일 UI를 구현했습니다.",
+    tech: ["Expo", "React Native", "TypeScript", "React Navigation"],
+    role: "프론트엔드",
+    period: "2026.04",
   },
   {
-    title: "Task Management App",
-    description: "드래그 앤 드롭 기반 칸반 보드 애플리케이션",
-    longDescription: "dnd-kit을 활용한 칸반 보드입니다. 상태 관리에 Zustand를 사용하고, 낙관적 업데이트와 로컬 스토리지 영속성을 구현했습니다.",
-    tech: ["Next.js", "Zustand", "dnd-kit", "Supabase"],
-    role: "풀스택",
-    period: "2025.03 - 2025.04",
-  },
-  {
-    title: "Portfolio Website",
-    description: "미니멀 다크 테마 개발자 포트폴리오",
-    longDescription: "현재 보고 계신 이 사이트입니다. 디자인 시스템 설계부터 Framer Motion 애니메이션, 반응형 레이아웃까지 직접 구현했습니다.",
-    tech: ["React", "Framer Motion", "Tailwind CSS"],
-    role: "디자인 & 개발",
-    period: "2025.05",
+    title: "moum-zip",
+    description: "모임 탐색과 스페이스 관리를 위한 웹 서비스",
+    longDescription:
+      "Next.js와 React 기반의 모임 서비스입니다. 공통 UI 컴포넌트, 마이페이지, 스페이스, 게시판 화면을 중심으로 반응형 인터페이스를 구현했습니다.",
+    tech: ["Next.js", "React", "TanStack Query", "Tailwind CSS"],
+    role: "프론트엔드",
+    period: "2026.04",
   },
 ];
 
@@ -43,13 +37,15 @@ const ProjectsSection = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <p className="font-mono text-xs text-primary mb-3 tracking-widest uppercase">Projects</p>
+            <p className="font-mono text-xs text-primary mb-3 tracking-widest uppercase">
+              Projects
+            </p>
             <h2 className="text-3xl md:text-4xl font-bold font-display mb-12 text-foreground">
               주요 프로젝트
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-2">
             {projects.map((project, idx) => (
               <motion.div
                 key={project.title}
@@ -65,7 +61,10 @@ const ProjectsSection = () => {
                       {String(idx + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <ExternalLink size={16} className="text-muted-foreground group-hover:text-primary transition-colors" />
+                  <ExternalLink
+                    size={16}
+                    className="text-muted-foreground group-hover:text-primary transition-colors"
+                  />
                 </div>
 
                 <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
@@ -77,7 +76,10 @@ const ProjectsSection = () => {
 
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
-                    <span key={t} className="text-xs font-mono text-muted-foreground bg-secondary px-2 py-0.5 rounded">
+                    <span
+                      key={t}
+                      className="text-xs font-mono text-muted-foreground bg-secondary px-2 py-0.5 rounded"
+                    >
                       {t}
                     </span>
                   ))}
@@ -110,7 +112,9 @@ const ProjectsSection = () => {
               <X size={20} />
             </button>
 
-            <span className="font-mono text-xs text-primary">{projects[selectedProject].period}</span>
+            <span className="font-mono text-xs text-primary">
+              {projects[selectedProject].period}
+            </span>
             <h3 className="text-2xl font-bold text-foreground mt-2 mb-2">
               {projects[selectedProject].title}
             </h3>
@@ -123,17 +127,26 @@ const ProjectsSection = () => {
 
             <div className="flex flex-wrap gap-2 mt-6">
               {projects[selectedProject].tech.map((t) => (
-                <span key={t} className="text-xs font-mono text-primary bg-primary/10 px-3 py-1 rounded-full">
+                <span
+                  key={t}
+                  className="text-xs font-mono text-primary bg-primary/10 px-3 py-1 rounded-full"
+                >
                   {t}
                 </span>
               ))}
             </div>
 
             <div className="flex gap-3 mt-8">
-              <a href="#" className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors">
+              <a
+                href="#"
+                className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
+              >
                 <Github size={16} /> GitHub
               </a>
-              <a href="#" className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors">
+              <a
+                href="#"
+                className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
+              >
                 <ExternalLink size={16} /> Live Demo
               </a>
             </div>
