@@ -1,159 +1,211 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { ExternalLink, Github, X } from "lucide-react";
+import { useRef } from "react";
 
-const projects = [
+const batScreenshots = [
   {
-    title: "BAT",
-    description: "OCR 기반 빈칸 학습과 복습을 제공하는 모바일 앱",
-    longDescription:
-      "Expo React Native 기반 학습 앱입니다. 이미지와 문서 입력, OCR 결과 확인, 학습/복습 화면, 소셜 로그인 화면 등 사용자 플로우 중심의 모바일 UI를 구현했습니다.",
-    tech: ["Expo", "React Native", "TypeScript", "React Navigation"],
-    role: "프론트엔드",
-    period: "2026.04",
+    src: "/projects/bat/bat-01-intro.png",
+    title: "브랜드와 학습 흐름을 먼저 전달",
+    description:
+      "첫 화면에서는 BAT 캐릭터와 핵심 메시지를 크게 보여주어 앱의 분위기와 학습 방향을 빠르게 이해할 수 있게 구성했습니다.",
   },
   {
+    src: "/projects/bat/bat-02-home.png",
+    title: "기술 스택으로 만든 홈 대시보드",
+    description:
+      "Expo와 React Native를 기반으로 학습 레벨, 연속 학습일, 리그 순위, 월간 목표를 한 화면에서 확인하는 모바일 UI를 구현했습니다.",
+  },
+  {
+    src: "/projects/bat/bat-03-upload.png",
+    title: "실제 교재 이미지를 학습 자료로 전환",
+    description:
+      "사용자가 직접 촬영한 교재를 자르고 업로드하면 OCR 학습 흐름으로 이어지도록 자료 입력 화면을 설계했습니다.",
+  },
+  {
+    src: "/projects/bat/bat-04-ai-blink.png",
+    title: "AI가 생성한 빈칸 학습",
+    description:
+      "OCR 결과에서 핵심 단어를 고르고 빈칸 문제로 바꿔, 단순 암기가 아니라 직접 떠올리는 복습 경험을 만들었습니다.",
+  },
+  {
+    src: "/projects/bat/bat-05-hint.png",
+    title: "막히는 순간을 돕는 단계별 힌트",
+    description:
+      "정답을 바로 보여주기보다 H1, H2, H3 단계로 힌트를 제공해 사용자가 스스로 답을 떠올릴 수 있게 했습니다.",
+  },
+  {
+    src: "/projects/bat/bat-06-rebiew.png",
+    title: "주기적으로 다시 보는 복습 구조",
+    description:
+      "업로드한 학습 자료와 정답률을 모아 보여주고, 필요한 자료를 다시 학습할 수 있는 복습 화면을 구성했습니다.",
+  },
+  {
+    src: "/projects/bat/bat-07-league.png",
+    title: "경쟁 요소로 유지되는 학습 동기",
+    description:
+      "리그 순위와 XP를 통해 친구와 경쟁하며 학습을 이어가도록 만들고, 반복 학습에 게임적인 재미를 더했습니다.",
+  },
+];
+
+const batTech = ["Expo", "React Native", "TypeScript", "React Navigation"];
+
+const otherProjects = [
+  {
     title: "moum-zip",
-    description: "모임 탐색과 스페이스 관리를 위한 웹 서비스",
-    longDescription:
-      "Next.js와 React 기반의 모임 서비스입니다. 공통 UI 컴포넌트, 마이페이지, 스페이스, 게시판 화면을 중심으로 반응형 인터페이스를 구현했습니다.",
-    tech: ["Next.js", "React", "TanStack Query", "Tailwind CSS"],
-    role: "프론트엔드",
     period: "2026.04",
+    description: "모임 탐색과 스페이스 관리를 위한 웹 서비스",
+    tech: ["Next.js", "React", "TanStack Query", "Tailwind CSS"],
   },
 ];
 
 const ProjectsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
   return (
-    <>
-      <section id="projects" className="section-padding" ref={ref}>
-        <div className="max-w-4xl mx-auto">
+    <section id="projects" className="section-padding" ref={ref}>
+      <div className="mx-auto max-w-5xl">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          <p className="mb-3 font-mono text-xs uppercase tracking-widest text-primary">
+            Projects
+          </p>
+          <h2 className="font-display text-3xl font-bold text-foreground md:text-4xl">
+            주요 프로젝트
+          </h2>
+        </motion.div>
+
+        <div className="space-y-12">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 36 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.55 }}
+            className="grid gap-8 border-b border-border/70 pb-12 md:grid-cols-[0.9fr_1.1fr] md:items-end"
           >
-            <p className="font-mono text-xs text-primary mb-3 tracking-widest uppercase">
-              Projects
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-12 text-foreground">
-              주요 프로젝트
-            </h2>
+            <div>
+              <span className="font-mono text-sm text-primary">2026.04</span>
+              <h3 className="mt-3 text-4xl font-bold tracking-tight text-foreground md:text-6xl">
+                BAT
+              </h3>
+            </div>
+
+            <div>
+              <p className="text-lg font-medium leading-relaxed text-foreground">
+                OCR 기반으로 교재 이미지를 빈칸 학습과 복습 콘텐츠로 바꾸는
+                모바일 학습 앱입니다.
+              </p>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                사용자가 자료를 업로드하고, AI가 생성한 문제를 풀고, 리그와
+                리포트로 학습 동기를 유지하는 흐름을 중심으로 화면을
+                구현했습니다.
+              </p>
+            </div>
           </motion.div>
 
-          <div className="grid gap-6 md:grid-cols-2">
-            {projects.map((project, idx) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                onClick={() => setSelectedProject(idx)}
-                className="group cursor-pointer p-6 rounded-xl bg-card border-subtle hover:border-primary/30 transition-all duration-300"
-              >
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <span className="font-mono text-primary text-sm font-bold">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <ExternalLink
-                    size={16}
-                    className="text-muted-foreground group-hover:text-primary transition-colors"
-                  />
-                </div>
-
-                <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span
-                      key={t}
-                      className="text-xs font-mono text-muted-foreground bg-secondary px-2 py-0.5 rounded"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Modal */}
-      {selectedProject !== null && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-background/80 backdrop-blur-sm"
-          onClick={() => setSelectedProject(null)}
-        >
           <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            className="relative max-w-lg w-full p-8 rounded-2xl bg-card border-subtle"
-            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5 }}
+            className="grid gap-5 border-b border-border/70 pb-12 md:grid-cols-[180px_1fr]"
           >
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <X size={20} />
-            </button>
-
-            <span className="font-mono text-xs text-primary">
-              {projects[selectedProject].period}
-            </span>
-            <h3 className="text-2xl font-bold text-foreground mt-2 mb-2">
-              {projects[selectedProject].title}
-            </h3>
-            <p className="text-sm text-muted-foreground mb-1">
-              담당: {projects[selectedProject].role}
-            </p>
-            <p className="text-muted-foreground mt-4 leading-relaxed">
-              {projects[selectedProject].longDescription}
-            </p>
-
-            <div className="flex flex-wrap gap-2 mt-6">
-              {projects[selectedProject].tech.map((t) => (
+            <h4 className="font-mono text-xs uppercase tracking-widest text-primary">
+              Tech Stack
+            </h4>
+            <div className="flex flex-wrap gap-3">
+              {batTech.map((tech) => (
                 <span
-                  key={t}
-                  className="text-xs font-mono text-primary bg-primary/10 px-3 py-1 rounded-full"
+                  key={tech}
+                  className="rounded-full bg-primary/10 px-4 py-2 text-sm font-mono text-primary"
                 >
-                  {t}
+                  {tech}
                 </span>
               ))}
             </div>
-
-            <div className="flex gap-3 mt-8">
-              <a
-                href="#"
-                className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
-              >
-                <Github size={16} /> GitHub
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
-              >
-                <ExternalLink size={16} /> Live Demo
-              </a>
-            </div>
           </motion.div>
-        </motion.div>
-      )}
-    </>
+
+          <div className="space-y-20">
+            {batScreenshots.map((screenshot, index) => (
+              <motion.article
+                key={screenshot.src}
+                initial={{ opacity: 0, y: 56 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.65 }}
+                className="grid gap-8 md:grid-cols-[minmax(0,1.35fr)_minmax(260px,0.65fr)] md:items-center"
+              >
+                <div
+                  className={
+                    index % 2 === 1
+                      ? "md:order-2"
+                      : undefined
+                  }
+                >
+                  <img
+                    src={screenshot.src}
+                    alt={`BAT ${screenshot.title}`}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    className="w-full rounded-lg border border-border/70 object-cover shadow-xl shadow-primary/5"
+                  />
+                </div>
+
+                <div className={index % 2 === 1 ? "md:order-1" : undefined}>
+                  <span className="font-mono text-sm text-primary">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <h4 className="mt-3 text-2xl font-semibold leading-tight text-foreground">
+                    {screenshot.title}
+                  </h4>
+                  <p className="mt-4 leading-relaxed text-muted-foreground">
+                    {screenshot.description}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          {otherProjects.map((project) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55 }}
+              className="grid gap-5 border-t border-border/70 pt-12 md:grid-cols-[180px_1fr]"
+            >
+              <div>
+                <span className="font-mono text-sm text-primary">
+                  {project.period}
+                </span>
+                <h3 className="mt-2 text-2xl font-bold text-foreground">
+                  {project.title}
+                </h3>
+              </div>
+
+              <div>
+                <p className="leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded bg-secondary px-2 py-1 text-xs font-mono text-muted-foreground"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
