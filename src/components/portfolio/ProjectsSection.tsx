@@ -1,7 +1,19 @@
-import { motion, useInView } from "framer-motion";
+import {
+  motion,
+  useInView,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { useRef } from "react";
 
-const batScreenshots = [
+type Screenshot = {
+  src: string;
+  title: string;
+  description: string;
+};
+
+const batScreenshots: Screenshot[] = [
   {
     src: "/projects/bat/bat-01-intro.png",
     title: "브랜드와 학습 흐름을 먼저 전달",
@@ -56,6 +68,57 @@ const otherProjects = [
     tech: ["Next.js", "React", "TanStack Query", "Tailwind CSS"],
   },
 ];
+
+const fadeRange = [0, 0.22, 0.72, 1];
+
+const useScrollFade = (scrollYProgress: MotionValue<number>, distance = 72) => ({
+  opacity: useTransform(scrollYProgress, fadeRange, [0, 1, 1, 0]),
+  y: useTransform(scrollYProgress, fadeRange, [distance, 0, 0, -distance]),
+});
+
+const BatScreenshotItem = ({
+  screenshot,
+  index,
+}: {
+  screenshot: Screenshot;
+  index: number;
+}) => {
+  const itemRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: itemRef,
+    offset: ["start 92%", "end 8%"],
+  });
+  const imageStyle = useScrollFade(scrollYProgress, 86);
+  const textStyle = useScrollFade(scrollYProgress, 64);
+
+  return (
+    <article
+      ref={itemRef}
+      className="grid min-h-[78vh] gap-8 py-12 md:grid-cols-[minmax(0,1.35fr)_minmax(260px,0.65fr)] md:items-center md:py-20"
+    >
+      <motion.div style={imageStyle}>
+        <img
+          src={screenshot.src}
+          alt={`BAT ${screenshot.title}`}
+          loading={index === 0 ? "eager" : "lazy"}
+          className="w-full rounded-lg border border-border/70 object-cover shadow-xl shadow-primary/5"
+        />
+      </motion.div>
+
+      <motion.div style={textStyle}>
+        <span className="font-mono text-sm text-primary">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <h4 className="mt-3 text-2xl font-semibold leading-tight text-foreground">
+          {screenshot.title}
+        </h4>
+        <p className="mt-4 leading-relaxed text-muted-foreground">
+          {screenshot.description}
+        </p>
+      </motion.div>
+    </article>
+  );
+};
 
 const ProjectsSection = () => {
   const ref = useRef(null);
@@ -128,43 +191,13 @@ const ProjectsSection = () => {
             </div>
           </motion.div>
 
-          <div className="space-y-20">
+          <div>
             {batScreenshots.map((screenshot, index) => (
-              <motion.article
+              <BatScreenshotItem
                 key={screenshot.src}
-                initial={{ opacity: 0, y: 56 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.25 }}
-                transition={{ duration: 0.65 }}
-                className="grid gap-8 md:grid-cols-[minmax(0,1.35fr)_minmax(260px,0.65fr)] md:items-center"
-              >
-                <div
-                  className={
-                    index % 2 === 1
-                      ? "md:order-2"
-                      : undefined
-                  }
-                >
-                  <img
-                    src={screenshot.src}
-                    alt={`BAT ${screenshot.title}`}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    className="w-full rounded-lg border border-border/70 object-cover shadow-xl shadow-primary/5"
-                  />
-                </div>
-
-                <div className={index % 2 === 1 ? "md:order-1" : undefined}>
-                  <span className="font-mono text-sm text-primary">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h4 className="mt-3 text-2xl font-semibold leading-tight text-foreground">
-                    {screenshot.title}
-                  </h4>
-                  <p className="mt-4 leading-relaxed text-muted-foreground">
-                    {screenshot.description}
-                  </p>
-                </div>
-              </motion.article>
+                screenshot={screenshot}
+                index={index}
+              />
             ))}
           </div>
 
